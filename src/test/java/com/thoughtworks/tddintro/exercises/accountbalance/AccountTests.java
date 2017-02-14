@@ -19,9 +19,10 @@ public class AccountTests {
     }
 
     @Test
-    @Ignore  // Remove each @Ignore and implement test
     public void shouldDecreaseMyBalanceWhenIWithdrawMoney(){
-
+        Account account = new Account(new BigDecimal(1));
+        account.withdraw(new BigDecimal(1));
+        Assert.assertTrue(account.getBalance().equals(new BigDecimal(0)));
     }
 
     @Test
