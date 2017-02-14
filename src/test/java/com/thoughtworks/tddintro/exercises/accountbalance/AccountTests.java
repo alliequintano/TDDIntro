@@ -9,31 +9,31 @@ import java.math.BigDecimal;
 
 public class AccountTests {
     private Account account;
+    BigDecimal initialBalance;
 
     @Before
     public void setUp() throws Exception {
-        BigDecimal initialBalance = new BigDecimal(10);
+        initialBalance = new BigDecimal(10);
         account = new Account(initialBalance);
     }
 
     @Test
     public void shouldIncreaseMyBalanceWhenIDepositMoney() {
-        account.deposit(new BigDecimal(1));
-        BigDecimal newBalance = account.getBalance();
-        Assert.assertTrue(newBalance.equals(new BigDecimal(11)));
+        BigDecimal depositAmount = new BigDecimal(1);
+        account.deposit(depositAmount);
+        Assert.assertEquals(initialBalance.add(depositAmount), account.getBalance());
     }
 
     @Test
     public void shouldDecreaseMyBalanceWhenIWithdrawMoney() {
-        account.withdraw(new BigDecimal(1));
-        BigDecimal newBalance = account.getBalance();
-        Assert.assertTrue(newBalance.equals(new BigDecimal(9)));
+        BigDecimal withdrawAmount = new BigDecimal(1);
+        account.withdraw(withdrawAmount);
+        Assert.assertEquals(initialBalance.subtract(withdrawAmount), account.getBalance());
     }
 
     @Test
     public void shouldNotDecreaseMyBalanceWhenIWithdrawMoneyAndDoNotHaveEnoughToCoverTheWithdrawal(){
         account.withdraw(new BigDecimal(11));
-        BigDecimal newBalance = account.getBalance();
-        Assert.assertTrue(newBalance.equals(new BigDecimal(10)));
+        Assert.assertEquals(initialBalance, account.getBalance());
     }
 }
