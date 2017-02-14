@@ -4,13 +4,18 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Assert;
 
+import java.math.BigDecimal;
+
+import static org.hamcrest.core.Is.is;
+
+
 public class AccountTests {
+
     @Test
     public void shouldIncreaseMyBalanceWhenIDepositMoney(){
-        Account account = new Account();
-        int initialBalance = account.getBalance();
-        account.deposit(1);
-        Assert.assertTrue(initialBalance < account.getBalance());
+        Account account = new Account(new BigDecimal(0));
+        account.deposit(new BigDecimal(1));
+        Assert.assertTrue(account.getBalance().equals(new BigDecimal(1)));
     }
 
     @Test

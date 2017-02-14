@@ -1,14 +1,20 @@
 package com.thoughtworks.tddintro.exercises.accountbalance;
 
-public class Account {
-    private int balance = 0;
+import java.math.BigDecimal;
 
-    int getBalance() {
+public class Account {
+    private BigDecimal balance;
+
+    public Account (BigDecimal initalBalance) {
+        this.balance = initalBalance;
+    }
+
+    BigDecimal getBalance() {
         return balance;
     }
 
-    void deposit(int amount) {
-        balance += amount;
+    void deposit(BigDecimal amount) {
+        balance = balance.add(amount);
     }
 
 }
