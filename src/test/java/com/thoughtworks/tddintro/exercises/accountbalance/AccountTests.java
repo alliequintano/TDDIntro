@@ -1,28 +1,33 @@
 package com.thoughtworks.tddintro.exercises.accountbalance;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Assert;
 
 import java.math.BigDecimal;
 
-import static org.hamcrest.core.Is.is;
-
-
 public class AccountTests {
+    private Account account;
 
-    @Test
-    public void shouldIncreaseMyBalanceWhenIDepositMoney(){
-        Account account = new Account(new BigDecimal(0));
-        account.deposit(new BigDecimal(1));
-        Assert.assertTrue(account.getBalance().equals(new BigDecimal(1)));
+    @Before
+    public void setUp() throws Exception {
+        BigDecimal initialBalance = new BigDecimal(10);
+        account = new Account(initialBalance);
     }
 
     @Test
-    public void shouldDecreaseMyBalanceWhenIWithdrawMoney(){
-        Account account = new Account(new BigDecimal(1));
+    public void shouldIncreaseMyBalanceWhenIDepositMoney() {
+        account.deposit(new BigDecimal(1));
+        BigDecimal newBalance = account.getBalance();
+        Assert.assertTrue(newBalance.equals(new BigDecimal(11)));
+    }
+
+    @Test
+    public void shouldDecreaseMyBalanceWhenIWithdrawMoney() {
         account.withdraw(new BigDecimal(1));
-        Assert.assertTrue(account.getBalance().equals(new BigDecimal(0)));
+        BigDecimal newBalance = account.getBalance();
+        Assert.assertTrue(newBalance.equals(new BigDecimal(9)));
     }
 
     @Test
