@@ -18,7 +18,10 @@ public class Account {
     }
 
     void withdraw(BigDecimal amount) {
-        balance = balance.subtract(amount);
+        BigDecimal result = balance.subtract(amount);
+        if (result.compareTo(BigDecimal.ZERO) == -1) return;
+
+        balance = result;
     }
 
 }

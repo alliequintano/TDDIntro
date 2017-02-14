@@ -31,8 +31,9 @@ public class AccountTests {
     }
 
     @Test
-    @Ignore  // Remove each @Ignore and implement test
     public void shouldNotDecreaseMyBalanceWhenIWithdrawMoneyAndDoNotHaveEnoughToCoverTheWithdrawal(){
-
+        account.withdraw(new BigDecimal(11));
+        BigDecimal newBalance = account.getBalance();
+        Assert.assertTrue(newBalance.equals(new BigDecimal(10)));
     }
 }
