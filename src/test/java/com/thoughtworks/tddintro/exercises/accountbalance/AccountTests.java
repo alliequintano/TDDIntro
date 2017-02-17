@@ -1,7 +1,6 @@
 package com.thoughtworks.tddintro.exercises.accountbalance;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Assert;
 
